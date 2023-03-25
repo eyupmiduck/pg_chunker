@@ -1,0 +1,11 @@
+CREATE ROLE chunk_data;
+CREATE ROLE chunk_pgplsql;
+CREATE ROLE chunk_pgplsql_lib;
+CREATE ROLE chunk_pgplsql_const;
+
+CREATE ROLE chunk_run_user LOGIN PASSWORD 'chunk_run_user';
+
+CREATE SCHEMA IF NOT EXISTS AUTHORIZATION chunk_data;
+CREATE SCHEMA IF NOT EXISTS AUTHORIZATION chunk_pgplsql;
+CREATE SCHEMA IF NOT EXISTS AUTHORIZATION chunk_pgplsql_lib;
+CREATE SCHEMA IF NOT EXISTS AUTHORIZATION chunk_pgplsql_const;
