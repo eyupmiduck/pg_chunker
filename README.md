@@ -8,7 +8,7 @@ A common scenario in applications that use a relational database is: "perform th
 
 pg_chunker uses the concept of a "driving table" when executing DML. This table will be used to split the DML into chunks. When pg_chunker is used to run this query the following happens:
 
-* The primary key dogs table is scanned and sorted.
+* The primary key of the table is scanned and sorted.
 * Primary key values of every n'th row is inserted into a metadata table (by default n is 1000)
 * The pg_chunker API will loop through the primary key ranges and generate dynamic SQL from the DML statement.  The dynamic DML SQL statements are executed.
 
