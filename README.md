@@ -174,8 +174,8 @@ VALUES
     ('Sally', 'Labrador'),
     ('Baby Sweet', 'Jack Russell Terrier'),
     ('Mollykins', 'Jack Russell Terrier'),
-    ('Little Chicken', 'Jack Russell Terrier'),
-    ('Baby Sweet', 'Jack Russell Terrier'),
+    ('Little Chicken', 'Jack Russell Terrier'),.
+    ('Mister Nasty', 'Jack Russell Terrier'),
     ('Scully', 'Pug'),
     ('Tennison', 'Pug'),
     ('The F.L.S', 'Pug'),
