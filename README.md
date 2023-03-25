@@ -8,7 +8,7 @@ A common scenario in applications that use a relational database is: "perform th
 
 pg_chunker uses the concept of a "driving table" when executing DML. This table will be used to split the DML into chunks. When pg_chunker is used to run this query the following happens:
 
-* The primary key dogs table is scanned and sorted.
+* The primary key of the table is scanned and sorted.
 * Primary key values of every n'th row is inserted into a metadata table (by default n is 1000)
 * The pg_chunker API will loop through the primary key ranges and generate dynamic SQL from the DML statement.  The dynamic DML SQL statements are executed.
 
@@ -41,16 +41,16 @@ Restrictions:
 
 ### Installing
 
-Insisde the install directory run:
+Inside the install directory run:
 
 * ```psql -U postgres -d <your_database_name> -f schema/create_schemas.sql```
 * ```psql -U postgres -d <your_database_name> -f schema/create_tables.sql```
 * ```psql -U postgres -d <your_database_name> -f plpgsql/load_plpgsql.sql```
 * ```psql -U postgres -d <your_database_name> -f schema/create_grants.sql```
 
-## Executing program
+## Executing the program
 
-The stored procedure used for executiing DML:
+The stored procedure used for executing DML:
 
 ```sql
 CREATE OR REPLACE PROCEDURE chunk_pgplsql.execute_dml(
@@ -174,8 +174,8 @@ VALUES
     ('Sally', 'Labrador'),
     ('Baby Sweet', 'Jack Russell Terrier'),
     ('Mollykins', 'Jack Russell Terrier'),
-    ('Little Chicken', 'Jack Russell Terrier'),
-    ('Baby Sweet', 'Jack Russell Terrier'),
+    ('Little Chicken', 'Jack Russell Terrier'),.
+    ('Mister Nasty', 'Jack Russell Terrier'),
     ('Scully', 'Pug'),
     ('Tennison', 'Pug'),
     ('The F.L.S', 'Pug'),
@@ -262,6 +262,11 @@ END$$
 ;
 ```
 
+## Future
+ * Support for 3 and 4 column primary keys
+ * Smaller commit sizes inside tables with 2+ column primary keys
+ * Parallelism probably implemented through the pg_background extension
+
 ## Author
 
 [Lee Horner](mailto:lee@eyupmiduck.com)
@@ -273,7 +278,7 @@ END$$
 
 ## License
 
-This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
+This project is licensed under the GNU General Public License v3.0 - see the LICENSE.md file for details
 
 ## Acknowledgments
 
