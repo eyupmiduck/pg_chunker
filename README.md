@@ -41,16 +41,16 @@ Restrictions:
 
 ### Installing
 
-Insisde the install directory run:
+Inside the install directory run:
 
 * ```psql -U postgres -d <your_database_name> -f schema/create_schemas.sql```
 * ```psql -U postgres -d <your_database_name> -f schema/create_tables.sql```
 * ```psql -U postgres -d <your_database_name> -f plpgsql/load_plpgsql.sql```
 * ```psql -U postgres -d <your_database_name> -f schema/create_grants.sql```
 
-## Executing program
+## Executing the program
 
-The stored procedure used for executiing DML:
+The stored procedure used for executing DML:
 
 ```sql
 CREATE OR REPLACE PROCEDURE chunk_pgplsql.execute_dml(
@@ -262,6 +262,11 @@ END$$
 ;
 ```
 
+## Future
+ * Support for 3 and 4 column primary keys
+ * Smaller commit sizes inside tables with 2+ column primary keys
+ * Parallelism probably implemented through the pg_background extension
+
 ## Author
 
 [Lee Horner](mailto:lee@eyupmiduck.com)
@@ -273,7 +278,7 @@ END$$
 
 ## License
 
-This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
+This project is licensed under the GNU General Public License v3.0 - see the LICENSE.md file for details
 
 ## Acknowledgments
 
