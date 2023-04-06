@@ -11,7 +11,7 @@ BEGIN
     BEGIN
         SELECT b.pk_key1, b.pk_key2, b.end_timestamp
         INTO STRICT o_boundary_record
-        FROM chunk_data.chunk_boundary b
+        FROM chunk_data.chunk_boundry b
         WHERE b.chunk_run_id = i_run_id
         AND   b.chunk_number = i_chunk_number;
         IF o_boundary_record.end_timestamp IS NOT NULL THEN

@@ -5,7 +5,7 @@ CREATE OR REPLACE PROCEDURE chunk_pgplsql_lib.update_chunk_metadata(
 LANGUAGE plpgsql
 AS $$
 BEGIN
-    UPDATE chunk_data.chunk_boundary b
+    UPDATE chunk_data.chunk_boundry b
     SET end_timestamp = NOW()
     WHERE b.chunk_run_id = i_run_id
     AND   b.chunk_number = i_chunk_number;
