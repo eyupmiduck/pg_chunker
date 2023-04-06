@@ -57,15 +57,18 @@ BEGIN
 
     l_k1_e_k2_n_1_key :=
                 '('    ||chunk_pgplsql_const.table_alias_tag()||'.'||chunk_pgplsql_const.pk_key1_tag()||' = $1 '||
-                ' AND '||chunk_pgplsql_const.table_alias_tag()||'.'||chunk_pgplsql_const.pk_key2_tag()||' >= $2 '||
+                ' AND '||chunk_pgplsql_const.table_alias_tag()||'.'||chunk_pgplsql_const.pk_key2_tag()||' = $2 '||
+                ' AND '||chunk_pgplsql_const.table_alias_tag()||'.'||chunk_pgplsql_const.pk_key3_tag()||' >= $3 '||
                 ')';
     l_k1_e_k2_n_2_key :=
-                '('    ||chunk_pgplsql_const.table_alias_tag()||'.'||chunk_pgplsql_const.pk_key1_tag()||' > $1 '||
-                ' AND '||chunk_pgplsql_const.table_alias_tag()||'.'||chunk_pgplsql_const.pk_key1_tag()||' < $2 '||
+                '('    ||chunk_pgplsql_const.table_alias_tag()||'.'||chunk_pgplsql_const.pk_key1_tag()||' = $1 '||
+                ' AND '||chunk_pgplsql_const.table_alias_tag()||'.'||chunk_pgplsql_const.pk_key2_tag()||' > $2 '||
+                ' AND '||chunk_pgplsql_const.table_alias_tag()||'.'||chunk_pgplsql_const.pk_key2_tag()||' < $3 '||
                 ')';
     l_k1_e_k2_n_3_key :=
                 '('    ||chunk_pgplsql_const.table_alias_tag()||'.'||chunk_pgplsql_const.pk_key1_tag()||' = $1 '||
-                ' AND '||chunk_pgplsql_const.table_alias_tag()||'.'||chunk_pgplsql_const.pk_key2_tag()||' < $2 '||
+                ' AND '||chunk_pgplsql_const.table_alias_tag()||'.'||chunk_pgplsql_const.pk_key2_tag()||' = $2 '||
+                ' AND '||chunk_pgplsql_const.table_alias_tag()||'.'||chunk_pgplsql_const.pk_key3_tag()||' < $3 '||
                 ')';
 
     l_k1_n_1_key :=
@@ -73,11 +76,11 @@ BEGIN
                 ' AND '||chunk_pgplsql_const.table_alias_tag()||'.'||chunk_pgplsql_const.pk_key2_tag()||' = $2 '||
                 ' AND '||chunk_pgplsql_const.table_alias_tag()||'.'||chunk_pgplsql_const.pk_key3_tag()||' >= $3 '||
                 ')';
-    l_k1_n_1_key :=
-                '('    ||chunk_pgplsql_const.table_alias_tag()||'.'||chunk_pgplsql_const.pk_key1_tag()||' = $1 '||
-                ' AND '||chunk_pgplsql_const.table_alias_tag()||'.'||chunk_pgplsql_const.pk_key2_tag()||' >= $2 '||
-                ')';
     l_k1_n_2_key :=
+                '('    ||chunk_pgplsql_const.table_alias_tag()||'.'||chunk_pgplsql_const.pk_key1_tag()||' = $1 '||
+                ' AND '||chunk_pgplsql_const.table_alias_tag()||'.'||chunk_pgplsql_const.pk_key2_tag()||' > $2 '||
+                ')';
+    l_k1_n_3_key :=
                 '('    ||chunk_pgplsql_const.table_alias_tag()||'.'||chunk_pgplsql_const.pk_key1_tag()||' > $1 '||
                 ' AND '||chunk_pgplsql_const.table_alias_tag()||'.'||chunk_pgplsql_const.pk_key1_tag()||' < $2 '||
                 ')';
@@ -253,7 +256,7 @@ BEGIN
         i_driving_schema_name   => i_driving_schema_name,
         i_driving_table_name    => i_driving_table_name,
         i_table_alias           => i_table_alias,
-        io_stmt                 => o_k1_n_3_stmt
+        io_stmt                 => o_k1_n_4_stmt
     );
     CALL chunk_pgplsql_lib.replace_table_tags(
         i_driving_schema_name   => i_driving_schema_name,

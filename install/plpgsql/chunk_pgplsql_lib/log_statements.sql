@@ -52,7 +52,12 @@ BEGIN
         );
     END IF;
     IF i_stmt_5 IS NOT NULL THEN
-        CALL chunk_pgplsql_lib.log_line(
+        CALL chunk_pgplsql_l    CALL chunk_pgplsql_lib.log_line(
+        i_log_line  => '=============='::VARCHAR,
+        i_log_level => i_log_level,
+        i_call_type => 1
+    );
+ib.log_line(
             i_log_line      => '%',
             i_expression_1  => i_stmt_5,
             i_log_level     => i_log_level,
@@ -91,5 +96,10 @@ BEGIN
             i_call_type     => 1
         );
     END IF;
+    CALL chunk_pgplsql_lib.log_line(
+        i_log_line  => '=============='::VARCHAR,
+        i_log_level => i_log_level,
+        i_call_type => 1
+    );
 END;$$
 ;

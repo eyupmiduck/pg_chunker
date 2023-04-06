@@ -31,7 +31,7 @@ Restrictions:
 
 * A driving table must have a primary key.
 * Only primary keys containing columns  of type ```VARCHAR```, ```INTEGER``` and ```TIMESTAMPTZ``` are supported.
-* Only primary keys of one or two columns are supported.
+* Only primary keys of up to three columns are supported.
 
 ## Getting Started
 
@@ -263,9 +263,10 @@ END$$
 ```
 
 ## Future
- * Support for 3 and 4 column primary keys
- * Smaller commit sizes inside tables with 2+ column primary keys
- * Parallelism probably implemented through the pg_background extension
+
+* Support for 3 and 4 column primary keys
+* Smaller commit sizes inside tables with 2+ column primary keys
+* Parallelism probably implemented through the pg_background extension
 
 ## Author
 

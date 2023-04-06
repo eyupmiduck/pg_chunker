@@ -48,11 +48,16 @@
 \i ./plpgsql/chunk_pgplsql_lib/pk2_execute_k1_e_k2_n.sql
 \i ./plpgsql/chunk_pgplsql_lib/pk2_execute_k1_n.sql
 \i ./plpgsql/chunk_pgplsql_lib/pk3_execute_final.sql
+\i ./plpgsql/chunk_pgplsql_lib/pk3_execute_k1_e_k2_e_k3_n.sql
+\i ./plpgsql/chunk_pgplsql_lib/pk3_execute_k1_e_k2_n.sql
+\i ./plpgsql/chunk_pgplsql_lib/pk3_execute_k1_n.sql
 \i ./plpgsql/chunk_pgplsql_lib/assert_first_chunk_found.sql
 \i ./plpgsql/chunk_pgplsql_lib/assert_upper_chunk_found.sql
 \i ./plpgsql/chunk_pgplsql_lib/assert_number_chunks_not_zero.sql
 \i ./plpgsql/chunk_pgplsql_lib/raise_key_values_exception.sql
 \i ./plpgsql/chunk_pgplsql_lib/log_statements.sql
+\i ./plpgsql/chunk_pgplsql_lib/get_varchar_representation.sql
+
 
 \i ./plpgsql/chunk_pgplsql/execute_dml.sql
 \i ./plpgsql/chunk_pgplsql/show_queries.sql

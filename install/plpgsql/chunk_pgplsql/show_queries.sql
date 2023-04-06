@@ -18,6 +18,11 @@ DECLARE
     l_stmt_3                    VARCHAR(65535);
     l_stmt_4                    VARCHAR(65535);
     l_stmt_5                    VARCHAR(65535);
+    l_stmt_6                    VARCHAR(65535);
+    l_stmt_7                    VARCHAR(65535);
+    l_stmt_8                    VARCHAR(65535);
+    l_stmt_9                    VARCHAR(65535);
+    l_stmt_10                   VARCHAR(65535);
 BEGIN
     CALL chunk_pgplsql_lib.validate_param_not_null(
         i_param_name    => 'i_driving_schema_name',
@@ -89,6 +94,26 @@ BEGIN
             o_k1_n_2_stmt           => l_stmt_3,
             o_k1_n_3_stmt           => l_stmt_4,
             o_final_stmt            => l_stmt_5
+        );
+    ELSIF CARDINALITY(l_pk_columns) = 3 THEN
+        CALL chunk_pgplsql_lib.pk3_get_chunk_statements(
+            i_driving_schema_name   => l_driving_schema_name,
+            i_driving_table_name    => l_driving_table_name,
+            i_statement_text        => i_statement_text,
+            i_pk_columns            => l_pk_columns,
+            i_pk_types              => l_pk_types,
+            i_table_alias           => i_table_alias,
+            i_log_level             => 6,
+            o_k1_e_k2_e_k3_n_stmt   => l_stmt_1,
+            o_k1_e_k2_n_1_stmt      => l_stmt_2,
+            o_k1_e_k2_n_2_stmt      => l_stmt_3,
+            o_k1_e_k2_n_3_stmt      => l_stmt_4,
+            o_k1_n_1_stmt           => l_stmt_5,
+            o_k1_n_2_stmt           => l_stmt_6,
+            o_k1_n_3_stmt           => l_stmt_7,
+            o_k1_n_4_stmt           => l_stmt_8,
+            o_k1_n_5_stmt           => l_stmt_9,
+            o_final_stmt            => l_stmt_10
         );
     ELSE
         RAISE EXCEPTION 'You should not have got here with a pk of % column', CARDINALITY(i_pk_columns);
