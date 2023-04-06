@@ -13,7 +13,7 @@ BEGIN
     SELECT b.chunk_number
     INTO STRICT l_chunk_number
     FROM chunk_data.chunk_run r,
-         chunk_data.chunk_boundry b
+         chunk_data.chunk_boundary b
     WHERE r.run_name = i_run_name
     AND   r.chunk_size = i_chunk_size
     AND   r.id = b.chunk_run_id
@@ -24,7 +24,7 @@ BEGIN
     SELECT COUNT(1)
     INTO STRICT l_count
     FROM chunk_data.chunk_run r,
-         chunk_data.chunk_boundry b
+         chunk_data.chunk_boundary b
     WHERE r.run_name = i_run_name
     AND   r.chunk_size = i_chunk_size
     AND   r.id = b.chunk_run_id
@@ -38,7 +38,7 @@ BEGIN
     SELECT COUNT(1)
     INTO STRICT l_count
     FROM chunk_data.chunk_run r,
-         chunk_data.chunk_boundry b
+         chunk_data.chunk_boundary b
     WHERE r.run_name = i_run_name
     AND   r.chunk_size = i_chunk_size
     AND   r.id = b.chunk_run_id
