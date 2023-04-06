@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS chunk_data.chunk_boundry;
+DROP TABLE IF EXISTS chunk_data.chunk_boundary;
 DROP TABLE IF EXISTS chunk_data.chunk_run;
 DROP TYPE IF EXISTS chunk_data.chunk_key CASCADE;
 
@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS chunk_data.chunk_run(
     CONSTRAINT c_chunk_run_end_timestamp    CHECK (end_timestamp IS NULL OR end_timestamp >= start_timestamp)
 );
 
-CREATE TABLE IF NOT EXISTS chunk_data.chunk_boundry(
+CREATE TABLE IF NOT EXISTS chunk_data.chunk_boundary(
     chunk_run_id        INTEGER NOT NULL,
     chunk_number        INTEGER NOT NULL,
     pk_key1             chunk_data.chunk_key NOT NULL,

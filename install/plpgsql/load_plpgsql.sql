@@ -19,7 +19,7 @@
 \i ./plpgsql/chunk_pgplsql_lib/log_chunk_progress.sql
 \i ./plpgsql/chunk_pgplsql_lib/pk1_execute_chunks.sql
 \i ./plpgsql/chunk_pgplsql_lib/pk2_execute_chunks.sql
-\i ./plpgsql/chunk_pgplsql_lib/get_chunk_boundry.sql
+\i ./plpgsql/chunk_pgplsql_lib/get_chunk_boundary.sql
 \i ./plpgsql/chunk_pgplsql_lib/validate_param_not_null.sql
 \i ./plpgsql/chunk_pgplsql_lib/update_run_complete.sql
 \i ./plpgsql/chunk_pgplsql_lib/validate_driving_table.sql

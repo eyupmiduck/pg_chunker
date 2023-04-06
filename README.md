@@ -272,11 +272,6 @@ END$$
 
 [Lee Horner](mailto:lee@eyupmiduck.com)
 
-## Version History
-
-* 0.1
-  * Initial Release
-
 ## License
 
 This project is licensed under the GNU General Public License v3.0 - see the LICENSE.md file for details
