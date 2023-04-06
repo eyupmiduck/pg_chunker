@@ -19,12 +19,14 @@
 \i ./plpgsql/chunk_pgplsql_lib/log_chunk_progress.sql
 \i ./plpgsql/chunk_pgplsql_lib/pk1_execute_chunks.sql
 \i ./plpgsql/chunk_pgplsql_lib/pk2_execute_chunks.sql
-\i ./plpgsql/chunk_pgplsql_lib/get_chunk_boundry.sql
+\i ./plpgsql/chunk_pgplsql_lib/pk3_execute_chunks.sql
+\i ./plpgsql/chunk_pgplsql_lib/get_chunk_boundary.sql
 \i ./plpgsql/chunk_pgplsql_lib/validate_param_not_null.sql
 \i ./plpgsql/chunk_pgplsql_lib/update_run_complete.sql
 \i ./plpgsql/chunk_pgplsql_lib/validate_driving_table.sql
 \i ./plpgsql/chunk_pgplsql_lib/pk1_get_chunk_statements.sql
 \i ./plpgsql/chunk_pgplsql_lib/pk2_get_chunk_statements.sql
+\i ./plpgsql/chunk_pgplsql_lib/pk3_get_chunk_statements.sql
 \i ./plpgsql/chunk_pgplsql_lib/get_chunk_range_query.sql
 \i ./plpgsql/chunk_pgplsql_lib/update_chunk_metadata.sql
 \i ./plpgsql/chunk_pgplsql_lib/p_replace.sql
@@ -45,6 +47,7 @@
 \i ./plpgsql/chunk_pgplsql_lib/pk2_execute_final.sql
 \i ./plpgsql/chunk_pgplsql_lib/pk2_execute_k1_e_k2_n.sql
 \i ./plpgsql/chunk_pgplsql_lib/pk2_execute_k1_n.sql
+\i ./plpgsql/chunk_pgplsql_lib/pk3_execute_final.sql
 \i ./plpgsql/chunk_pgplsql_lib/assert_first_chunk_found.sql
 \i ./plpgsql/chunk_pgplsql_lib/assert_upper_chunk_found.sql
 \i ./plpgsql/chunk_pgplsql_lib/assert_number_chunks_not_zero.sql
