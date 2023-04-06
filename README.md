@@ -263,18 +263,14 @@ END$$
 ```
 
 ## Future
- * Support for 3 and 4 column primary keys
- * Smaller commit sizes inside tables with 2+ column primary keys
- * Parallelism probably implemented through the pg_background extension
+
+* Support for 3 and 4 column primary keys
+* Smaller commit sizes inside tables with 2+ column primary keys
+* Parallelism probably implemented through the pg_background extension
 
 ## Author
 
 [Lee Horner](mailto:lee@eyupmiduck.com)
-
-## Version History
-
-* 0.1
-  * Initial Release
 
 ## License
 
