@@ -32,6 +32,7 @@ CREATE TABLE IF NOT EXISTS chunk_data.chunk_boundary(
     chunk_number        INTEGER NOT NULL,
     pk_key1             chunk_data.chunk_key NOT NULL,
     pk_key2             chunk_data.chunk_key,
+    pk_key3             chunk_data.chunk_key,
     end_timestamp       TIMESTAMPTZ,
     PRIMARY KEY (chunk_run_id, chunk_number),
     FOREIGN KEY (chunk_run_id) REFERENCES chunk_data.chunk_run

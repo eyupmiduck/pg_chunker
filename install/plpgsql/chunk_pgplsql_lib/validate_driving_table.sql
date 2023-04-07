@@ -54,8 +54,8 @@ BEGIN
             o_pk_types[l_pk_column_pos]:= chunk_pgplsql_const.varchar_type();
         END IF;
     END LOOP;
-    IF CARDINALITY(o_pk_columns) NOT IN (1,2) THEN
-        RAISE EXCEPTION 'Only supports primary keys of 1 or 2 columns. Table % has a PK of %', l_qualified_table_name, CARDINALITY(o_pk_columns);
+    IF CARDINALITY(o_pk_columns) NOT IN (1, 2, 3) THEN
+        RAISE EXCEPTION 'Only supports primary keys of 1 or 3 columns. Table % has a PK of %', l_qualified_table_name, CARDINALITY(o_pk_columns);
     END IF;
 
     FOREACH l_pk_type IN ARRAY o_pk_types LOOP
