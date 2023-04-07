@@ -31,7 +31,7 @@ Restrictions:
 
 * A driving table must have a primary key.
 * Only primary keys containing columns  of type ```VARCHAR```, ```INTEGER``` and ```TIMESTAMPTZ``` are supported.
-* Only primary keys of one or two columns are supported.
+* Only primary keys of up to three columns are supported.
 
 ## Getting Started
 

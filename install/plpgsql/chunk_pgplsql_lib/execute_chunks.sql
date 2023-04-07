@@ -43,6 +43,20 @@ BEGIN
             i_log_level             => i_log_level,
             i_log_every_chunk       => i_log_every_chunk
         );
+    ELSIF CARDINALITY(i_pk_columns) = 3 THEN
+        CALL chunk_pgplsql_lib.pk3_execute_chunks(
+            i_driving_schema_name   => i_driving_schema_name,
+            i_driving_table_name    => i_driving_table_name,
+            i_statement_text        => i_statement_text,
+            i_run_id                => i_run_id,
+            i_start_chunk           => i_start_chunk,
+            i_number_of_chunks      => i_number_of_chunks,
+            i_pk_columns            => i_pk_columns,
+            i_pk_types              => i_pk_types,
+            i_table_alias           => i_table_alias,
+            i_log_level             => i_log_level,
+            i_log_every_chunk       => i_log_every_chunk
+        );
     ELSE
         RAISE EXCEPTION 'You should not have got here with a pk of % column', CARDINALITY(i_pk_columns);
     END IF;

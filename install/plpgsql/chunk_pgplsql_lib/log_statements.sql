@@ -91,5 +91,10 @@ BEGIN
             i_call_type     => 1
         );
     END IF;
+    CALL chunk_pgplsql_lib.log_line(
+        i_log_line  => '=============='::VARCHAR,
+        i_log_level => i_log_level,
+        i_call_type => 1
+    );
 END;$$
 ;
