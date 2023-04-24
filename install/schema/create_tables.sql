@@ -2,12 +2,18 @@ DROP TABLE IF EXISTS chunk_data.chunk_boundary;
 DROP TABLE IF EXISTS chunk_data.chunk_run;
 DROP TYPE IF EXISTS chunk_data.chunk_key CASCADE;
 
+/*
+    A type to hold a value of a col in a primary key boundary.  Can be varchar, integer or timestamp
+*/
 CREATE TYPE chunk_data.chunk_key AS (
     integer_value       INTEGER,
     varchar_value       VARCHAR(4000),
     timestamptz_value   TIMESTAMP
 );
 
+/*
+    Stores info for a chunk run
+*/
 CREATE TABLE IF NOT EXISTS chunk_data.chunk_run(
     id                      SERIAL NOT NULL,
     driving_schema_name     VARCHAR(63) NOT NULL,
@@ -27,6 +33,9 @@ CREATE TABLE IF NOT EXISTS chunk_data.chunk_run(
     CONSTRAINT c_chunk_run_end_timestamp    CHECK (end_timestamp IS NULL OR end_timestamp >= start_timestamp)
 );
 
+/*
+    Stores info for a boundary of a chunk inside a chunk run
+*/
 CREATE TABLE IF NOT EXISTS chunk_data.chunk_boundary(
     chunk_run_id        INTEGER NOT NULL,
     chunk_number        INTEGER NOT NULL,
