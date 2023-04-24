@@ -1,3 +1,6 @@
+/*
+    Builds a query that will insert rows that represent the chunks of the primary key values inside a table that will drive a chunking operation
+*/
 CREATE OR REPLACE PROCEDURE chunk_pgplsql_lib.get_chunk_range_query(
     i_driving_schema_name       IN  VARCHAR,
     i_driving_table_name        IN  VARCHAR,

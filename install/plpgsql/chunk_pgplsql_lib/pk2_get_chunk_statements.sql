@@ -1,3 +1,6 @@
+/*
+    Get all the possible statements that will be used to execute chunks on a table with 2 col pk
+*/
 CREATE OR REPLACE PROCEDURE chunk_pgplsql_lib.pk2_get_chunk_statements(
     i_driving_schema_name   IN  VARCHAR,
     i_driving_table_name    IN  VARCHAR,

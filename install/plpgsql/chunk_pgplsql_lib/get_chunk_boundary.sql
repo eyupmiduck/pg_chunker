@@ -1,3 +1,6 @@
+/*
+    for a given run id and chunk number return a record that holds the key values of the chunk boundary
+*/
 CREATE OR REPLACE PROCEDURE chunk_pgplsql_lib.get_chunk_boundary(
     i_run_id            IN INTEGER,
     i_chunk_number      IN INTEGER,

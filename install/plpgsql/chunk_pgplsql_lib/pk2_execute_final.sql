@@ -1,3 +1,6 @@
+/*
+    Executes the final chunk of a chunking operation with a driving table with 2 PK columns
+*/
 CREATE OR REPLACE PROCEDURE chunk_pgplsql_lib.pk2_execute_final(
     i_lower_boundary_record IN RECORD,
     i_run_id                IN INTEGER,

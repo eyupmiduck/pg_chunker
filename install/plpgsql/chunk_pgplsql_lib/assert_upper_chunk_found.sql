@@ -1,3 +1,6 @@
+/*
+    Assert an upper range of the chunk was found
+*/
 CREATE OR REPLACE PROCEDURE chunk_pgplsql_lib.assert_upper_chunk_found(
     i_found         IN BOOLEAN,
     i_run_id        IN INTEGER,

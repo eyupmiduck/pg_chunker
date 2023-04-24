@@ -1,3 +1,6 @@
+/*
+    Marks a chunking run as complete
+*/
 CREATE OR REPLACE PROCEDURE chunk_pgplsql_lib.update_run_complete(
     i_run_id    IN INTEGER
 )

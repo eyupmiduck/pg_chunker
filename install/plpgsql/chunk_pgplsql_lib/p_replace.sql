@@ -1,3 +1,6 @@
+/*
+    A simple procedure to replace text ina string.  Ensures the values are not null
+*/
 CREATE OR REPLACE PROCEDURE chunk_pgplsql_lib.p_replace(
     io_source   IN OUT VARCHAR,
     i_old       IN     VARCHAR,

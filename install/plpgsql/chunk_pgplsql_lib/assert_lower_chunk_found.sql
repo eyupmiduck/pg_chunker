@@ -1,4 +1,7 @@
-CREATE OR REPLACE PROCEDURE chunk_pgplsql_lib.assert_first_chunk_found(
+/*
+    ensures the lower boundary of a chunk was found.  If it is not found raise an error.
+*/
+CREATE OR REPLACE PROCEDURE chunk_pgplsql_lib.assert_lower_chunk_found(
     i_found         IN BOOLEAN,
     i_run_id        IN INTEGER,
     i_start_chunk   IN INTEGER

@@ -1,3 +1,6 @@
+/*
+    An implementation of the instr function found in standard oracle
+*/
 CREATE OR REPLACE FUNCTION chunk_pgplsql_lib.instr(str text, sub text, startpos int = 1, occurrence int = 1)
 RETURNS INT LANGUAGE PLPGSQL IMMUTABLE
 AS $$

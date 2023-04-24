@@ -1,3 +1,7 @@
+/*
+    executes the chunks inside a run.  Will call down to the specific implementation of the execute chunks code for the  number of columns in the PK
+*/
+
 CREATE OR REPLACE PROCEDURE chunk_pgplsql_lib.execute_chunks(
     i_driving_schema_name   IN VARCHAR,
     i_driving_table_name    IN VARCHAR,

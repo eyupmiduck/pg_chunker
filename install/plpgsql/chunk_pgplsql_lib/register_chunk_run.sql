@@ -1,3 +1,7 @@
+/*
+    Checks to see if an unfinished run exists and returns the values
+    Otherwise creates the metadata for a new run
+*/
 CREATE OR REPLACE PROCEDURE chunk_pgplsql_lib.register_chunk_run(
     i_driving_schema_name   IN  VARCHAR,
     i_driving_table_name    IN  VARCHAR,

@@ -1,3 +1,6 @@
+/*
+    Logs the status of a run
+*/
 CREATE OR REPLACE PROCEDURE chunk_pgplsql_lib.show_run_status_helper(
     i_run_id  IN INTEGER
 )

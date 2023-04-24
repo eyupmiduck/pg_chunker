@@ -1,3 +1,6 @@
+/*
+    Returns true if the key column is an varchar
+*/
 CREATE OR REPLACE FUNCTION chunk_pgplsql_lib.is_varchar(
     i_key   IN chunk_data.chunk_key
 ) RETURNS BOOLEAN

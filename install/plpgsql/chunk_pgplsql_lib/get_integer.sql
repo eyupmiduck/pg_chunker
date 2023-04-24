@@ -1,3 +1,7 @@
+/*
+    Returns the integer value of an integer pk columns.
+    Return an error if the column is not of type integer
+*/
 CREATE OR REPLACE FUNCTION chunk_pgplsql_lib.get_integer(
     i_key   IN chunk_data.chunk_key
 ) RETURNS INTEGER

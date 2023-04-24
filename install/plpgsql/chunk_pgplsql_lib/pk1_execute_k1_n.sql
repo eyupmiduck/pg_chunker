@@ -1,3 +1,6 @@
+/*
+    Execute a chunk for a 1 col pk table
+*/
 CREATE OR REPLACE PROCEDURE chunk_pgplsql_lib.pk1_execute_k1_n(
     i_lower_boundary_record IN RECORD,
     i_upper_boundary_record IN RECORD,

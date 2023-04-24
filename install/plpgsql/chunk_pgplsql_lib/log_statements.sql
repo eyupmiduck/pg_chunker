@@ -1,3 +1,6 @@
+/*
+    Log all the statements that will be used for the execution of the chunks.
+*/
 CREATE OR REPLACE PROCEDURE chunk_pgplsql_lib.log_statements(
     i_log_level         IN INTEGER,
     i_stmt_description  IN VARCHAR,

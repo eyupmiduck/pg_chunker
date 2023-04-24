@@ -1,3 +1,6 @@
+/*
+    Make sure a parameter is not null
+*/
 CREATE OR REPLACE PROCEDURE chunk_pgplsql_lib.validate_param_not_null(
     i_param_name    IN VARCHAR,
     i_param_value   IN VARCHAR

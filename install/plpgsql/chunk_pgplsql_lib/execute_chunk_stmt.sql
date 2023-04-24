@@ -1,3 +1,6 @@
+/*
+    A set of procedures that take a set of keys and uses the values as substitution  parameters for a dynamic statement
+*/
 CREATE OR REPLACE PROCEDURE chunk_pgplsql_lib.execute_chunk_stmt(
     i_key1  IN chunk_data.chunk_key,
     i_stmt  IN VARCHAR

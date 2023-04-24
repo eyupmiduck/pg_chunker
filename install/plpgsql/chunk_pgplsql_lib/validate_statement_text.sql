@@ -1,3 +1,6 @@
+/*
+    Make sure an input query string has the  correct tags
+*/
 CREATE OR REPLACE PROCEDURE chunk_pgplsql_lib.validate_statement_text(
     i_statement_text        IN VARCHAR
 )

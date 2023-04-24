@@ -1,3 +1,6 @@
+/*
+    Replaces the column name tags with e actual column names inside the injected key range clauses
+*/
 CREATE OR REPLACE PROCEDURE chunk_pgplsql_lib.replace_tags_in_key_clause(
     i_pk_columns    IN     VARCHAR[],
     i_table_alias   IN     VARCHAR,

@@ -60,7 +60,7 @@ BEGIN
             o_found             => l_found,
             o_boundary_record   => l_lower_boundary_record
         );
-        CALL chunk_pgplsql_lib.assert_first_chunk_found(
+        CALL chunk_pgplsql_lib.assert_lower_chunk_found(
             i_found         => l_found,
             i_run_id        => i_run_id,
             i_start_chunk   => i_start_chunk

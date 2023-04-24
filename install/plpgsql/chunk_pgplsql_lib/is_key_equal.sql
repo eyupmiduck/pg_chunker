@@ -1,3 +1,6 @@
+/*
+    Returns true is the two key columns are of equal value.  Will return an error if the two columns are of a different type
+*/
 CREATE OR REPLACE FUNCTION chunk_pgplsql_lib.is_key_equal(
     i_key1  IN chunk_data.chunk_key,
     i_key2  IN chunk_data.chunk_key

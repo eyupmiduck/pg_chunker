@@ -1,3 +1,7 @@
+/*
+    Executes a chunk for a 3 col pk table is:
+    col 1 lower bound is not equal to upper bound
+*/
 CREATE OR REPLACE PROCEDURE chunk_pgplsql_lib.pk3_execute_k1_n(
     i_lower_boundary_record IN RECORD,
     i_upper_boundary_record IN RECORD,

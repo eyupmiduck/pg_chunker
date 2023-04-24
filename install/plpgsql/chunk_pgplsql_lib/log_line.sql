@@ -1,3 +1,6 @@
+/*
+    Log a line if the logging level is met
+*/
 CREATE OR REPLACE PROCEDURE chunk_pgplsql_lib.log_line(
     i_log_line      IN VARCHAR,
     i_log_level     IN INTEGER,

@@ -51,7 +51,7 @@
 \i ./plpgsql/chunk_pgplsql_lib/pk3_execute_k1_e_k2_e_k3_n.sql
 \i ./plpgsql/chunk_pgplsql_lib/pk3_execute_k1_e_k2_n.sql
 \i ./plpgsql/chunk_pgplsql_lib/pk3_execute_k1_n.sql
-\i ./plpgsql/chunk_pgplsql_lib/assert_first_chunk_found.sql
+\i ./plpgsql/chunk_pgplsql_lib/assert_lower_chunk_found.sql
 \i ./plpgsql/chunk_pgplsql_lib/assert_upper_chunk_found.sql
 \i ./plpgsql/chunk_pgplsql_lib/assert_number_chunks_not_zero.sql
 \i ./plpgsql/chunk_pgplsql_lib/raise_key_values_exception.sql

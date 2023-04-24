@@ -1,3 +1,6 @@
+/*
+    replaces the driving table tags inside a query string with the qualified driving table name
+*/
 CREATE OR REPLACE PROCEDURE chunk_pgplsql_lib.replace_table_tags(
     i_driving_schema_name   IN     VARCHAR,
     i_driving_table_name    IN     VARCHAR,

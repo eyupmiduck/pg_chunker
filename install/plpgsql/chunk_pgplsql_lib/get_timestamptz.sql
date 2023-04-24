@@ -1,3 +1,7 @@
+/*
+    Returns the timestamp value of an integer pk columns.
+    Return an error if the column is not of type timestamp
+*/
 CREATE OR REPLACE FUNCTION chunk_pgplsql_lib.get_timestamptz(
     i_key   IN chunk_data.chunk_key
 ) RETURNS TIMESTAMP

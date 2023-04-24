@@ -1,3 +1,6 @@
+/*
+    Raise an error message for an unknown chunk
+*/
 CREATE OR REPLACE PROCEDURE chunk_pgplsql_lib.raise_key_values_exception(
     i_chunk_number  IN INTEGER,
     i_run_id        IN INTEGER

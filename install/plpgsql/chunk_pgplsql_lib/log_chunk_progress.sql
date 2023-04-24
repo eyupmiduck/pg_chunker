@@ -1,3 +1,6 @@
+/*
+    Log a line to report the progress of the run.
+*/
 CREATE OR REPLACE PROCEDURE chunk_pgplsql_lib.log_chunk_progress(
     i_current_chunk     IN INTEGER,
     i_number_of_chunks  IN INTEGER,

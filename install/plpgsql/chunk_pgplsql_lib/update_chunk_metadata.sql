@@ -1,3 +1,6 @@
+/*
+    updates the end timestamp value of a completed chunk
+*/
 CREATE OR REPLACE PROCEDURE chunk_pgplsql_lib.update_chunk_metadata(
     i_run_id                IN INTEGER,
     i_chunk_number          IN INTEGER

@@ -1,3 +1,6 @@
+/*
+    Returns the varchar value of a pk column.  Useful for debugging
+*/
 CREATE OR REPLACE FUNCTION chunk_pgplsql_lib.get_varchar_representation(
     i_key   IN chunk_data.chunk_key
 ) RETURNS VARCHAR

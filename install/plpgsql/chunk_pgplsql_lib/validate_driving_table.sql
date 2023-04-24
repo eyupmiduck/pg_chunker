@@ -1,3 +1,6 @@
+/*
+    Validate that the dring table exists, has a primary key, that the pk columns are of the correct type and number
+*/
 CREATE OR REPLACE PROCEDURE chunk_pgplsql_lib.validate_driving_table(
     i_driving_schema_name IN  VARCHAR,
     i_driving_table_name  IN  VARCHAR,
