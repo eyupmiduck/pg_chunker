@@ -1,5 +1,7 @@
 # Version History
 
+* 0.3.1
+  * Add a missing file
 * 0.3
   * Support for 3 column primary keys
 * 0.2
