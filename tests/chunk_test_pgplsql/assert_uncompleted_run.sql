@@ -1,3 +1,7 @@
+/*
+    Tests that a run is uncompleted
+    asserts the count of completed and uncompleted chunks matched the inputs
+*/
 CREATE OR REPLACE PROCEDURE chunk_test_pgplsql.assert_uncompleted_run(
     i_run_name              IN VARCHAR,
     i_chunk_size            IN INTEGER,

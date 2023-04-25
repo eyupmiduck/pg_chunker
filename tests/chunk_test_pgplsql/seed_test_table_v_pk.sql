@@ -1,3 +1,6 @@
+/*
+    inserts test data into the 1 column pk varchar source data table
+*/
 CREATE OR REPLACE PROCEDURE chunk_test_pgplsql.seed_test_table_v_pk(
     i_number_of_rows IN INTEGER
 )

@@ -1,3 +1,8 @@
+/*
+    runs a count on the source and target tables
+    makes sure the  counts match
+    runs diffs on teh data to ensure the rows have the same data
+*/
 CREATE OR REPLACE PROCEDURE chunk_test_pgplsql.validate_test_table(
     i_table_name IN VARCHAR
 )

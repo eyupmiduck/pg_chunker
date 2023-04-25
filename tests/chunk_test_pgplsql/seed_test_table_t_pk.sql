@@ -1,3 +1,6 @@
+/*
+    inserts test data into the 1 column pk timestamp source data table
+*/
 CREATE OR REPLACE PROCEDURE chunk_test_pgplsql.seed_test_table_t_pk(
     i_number_of_rows IN INTEGER
 )

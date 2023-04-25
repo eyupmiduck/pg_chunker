@@ -1,3 +1,7 @@
+/*
+    runs a test insert operation into the 1 char target table from the source table
+    validates the rows to make sure they are identical
+*/
 CREATE OR REPLACE PROCEDURE chunk_test_pgplsql.test_insert_test_table_t_pk(
     i_chunk_size IN INTEGER
 )
