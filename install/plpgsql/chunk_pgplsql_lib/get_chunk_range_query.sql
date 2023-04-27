@@ -17,8 +17,8 @@ DECLARE
     l_chunk_boundary_key_col     INTEGER;
 BEGIN
     o_insert_chunks_statement :=
-        '   INSERT INTO chunk_data.chunk_boundary(chunk_run_id, chunk_number, <chunk_boundary_key_cols>)
-            SELECT $1, ROW_NUMBER() OVER (ORDER BY <key_cols>) row_num, <key_cols>
+        '   INSERT INTO chunk_data.chunk_boundary(chunk_run_id, chunk_number, sub_chunk_number, <chunk_boundary_key_cols>)
+            SELECT $1, ROW_NUMBER() OVER (ORDER BY <key_cols>) row_num, 0, <key_cols>
             FROM (
                 SELECT <key_cols>, q_row_num.row_num, LAST_VALUE(q_row_num.row_num) OVER() last_val
                 FROM (

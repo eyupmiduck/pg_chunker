@@ -12,7 +12,7 @@ AS $$
 BEGIN
     o_found:= FALSE;
     BEGIN
-        SELECT b.pk_key1, b.pk_key2, b.pk_key3, b.end_timestamp
+        SELECT b.pk_key1, b.pk_key2, b.pk_key3, b.end_timestamp, b.sub_chunk_number
         INTO STRICT o_boundary_record
         FROM chunk_data.chunk_boundary b
         WHERE b.chunk_run_id = i_run_id

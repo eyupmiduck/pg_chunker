@@ -10,16 +10,21 @@ CREATE OR REPLACE PROCEDURE chunk_pgplsql_lib.pk1_execute_k1_n(
 )
 LANGUAGE plpgsql
 AS $$
+DECLARE
+    l_sub_chunk_number  INTEGER;
 BEGIN
-    CALL chunk_pgplsql_lib.execute_chunk_stmt(
-        i_key1  => i_lower_boundary_record.pk_key1,
-        i_key2  => i_upper_boundary_record.pk_key1,
-        i_stmt  => i_k1_n_stmt
-    );
-    CALL chunk_pgplsql_lib.update_chunk_metadata(
-        i_run_id        => i_run_id,
-        i_chunk_number  => i_chunk_number
-    );
-    COMMIT;
+    l_sub_chunk_number:= i_lower_boundary_record.sub_chunk_number;
+    IF l_sub_chunk_number = 0 THEN
+        CALL chunk_pgplsql_lib.execute_chunk_stmt(
+            i_run_id                => i_run_id,
+            i_chunk_number          => i_chunk_number,
+            i_key1                  => i_lower_boundary_record.pk_key1,
+            i_key2                  => i_upper_boundary_record.pk_key1,
+            i_stmt                  => i_k1_n_stmt,
+            i_is_final_sub_chunk    => TRUE,
+            i_is_final_chunk        => FALSE,
+            o_sub_chunk_number      => l_sub_chunk_number
+        );
+    END IF;
 END;$$
 ;
