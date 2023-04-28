@@ -74,7 +74,6 @@ BEGIN
             i_driving_table_name    => l_driving_table_name,
             i_statement_text        => i_statement_text,
             i_pk_columns            => l_pk_columns,
-            i_pk_types              => l_pk_types,
             i_table_alias           => i_table_alias,
             i_log_level             => 6,
             o_k1_n_stmt             => l_stmt_1,
@@ -116,7 +115,7 @@ BEGIN
             o_final_stmt            => l_stmt_10
         );
     ELSE
-        RAISE EXCEPTION 'You should not have got here with a pk of % column', CARDINALITY(i_pk_columns);
+        RAISE EXCEPTION 'You should not have got here with a pk of % column', CARDINALITY(l_pk_columns);
     END IF;
 
 END;$$

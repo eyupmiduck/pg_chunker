@@ -279,3 +279,4 @@ This project is licensed under the GNU General Public License v3.0 - see the LIC
 ## Acknowledgments
 
 * [pgenv](https://github.com/theory/pgenv)
+* [plpgsql_check](https://github.com/okbob/plpgsql_check)

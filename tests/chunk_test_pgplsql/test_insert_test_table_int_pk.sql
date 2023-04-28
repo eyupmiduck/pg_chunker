@@ -36,7 +36,6 @@ CREATE OR REPLACE PROCEDURE chunk_test_pgplsql.test_insert_test_table_int_pk(
 LANGUAGE plpgsql
 AS $$
 DECLARE
-    l_table_name    VARCHAR(4000) := 'test_table_int_pk';
     l_chunk_size    INTEGER;
 BEGIN
     CALL chunk_pgplsql.mark_runs_complete(

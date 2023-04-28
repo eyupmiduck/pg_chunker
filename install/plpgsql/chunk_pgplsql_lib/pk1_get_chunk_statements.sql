@@ -6,7 +6,6 @@ CREATE OR REPLACE PROCEDURE chunk_pgplsql_lib.pk1_get_chunk_statements(
     i_driving_table_name    IN  VARCHAR,
     i_statement_text        IN  VARCHAR,
     i_pk_columns            IN  VARCHAR[],
-    i_pk_types              IN  VARCHAR[],
     i_table_alias           IN  VARCHAR,
     i_log_level             IN  INTEGER,
     o_k1_n_stmt             OUT VARCHAR,
