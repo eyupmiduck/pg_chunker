@@ -26,7 +26,6 @@ BEGIN
         i_driving_table_name    => i_driving_table_name,
         i_statement_text        => i_statement_text,
         i_pk_columns            => i_pk_columns,
-        i_pk_types              => i_pk_types,
         i_table_alias           => i_table_alias,
         i_log_level             => i_log_level,
         o_k1_n_stmt             => l_k1_n_stmt,
