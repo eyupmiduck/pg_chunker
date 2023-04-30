@@ -62,7 +62,6 @@
 \i ./plpgsql/chunk_pgplsql/execute_dml.sql
 \i ./plpgsql/chunk_pgplsql/show_queries.sql
 \i ./plpgsql/chunk_pgplsql/mark_runs_complete.sql
-\i ./plpgsql/chunk_pgplsql/mark_run_complete.sql
 \i ./plpgsql/chunk_pgplsql/show_run_status.sql
 \i ./plpgsql/chunk_pgplsql/show_active_run_status.sql
 \i ./plpgsql/chunk_pgplsql/show_all_run_status.sql

@@ -24,8 +24,5 @@ BEGIN
             o_sub_chunk_number      => l_sub_chunk_number
         );
     END IF;
-    CALL chunk_pgplsql_lib.update_run_complete(
-        i_run_id        => i_run_id
-    );
 END;$$
 ;
