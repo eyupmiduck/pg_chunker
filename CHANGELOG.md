@@ -1,5 +1,7 @@
 # Version History
 
+* 0.4.0
+  * commit more frequently in 2,3 column primary key tables.  Reduces retry overhead.
 * 0.3.1
   * Add a missing file
 * 0.3
