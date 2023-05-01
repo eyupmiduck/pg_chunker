@@ -1,0 +1,185 @@
+UPDATE 1000
+UPDATE 1
+CALL
+TRUNCATE TABLE
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:33: NOTICE:  Chunking query
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:33: NOTICE:  ==============
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:33: NOTICE:     INSERT INTO chunk_data.chunk_boundary(chunk_run_id, chunk_number, sub_chunk_number, pk_key1.integer_value, pk_key2.integer_value)
+            SELECT $1, ROW_NUMBER() OVER (ORDER BY key1, key2) row_num, 0, key1, key2
+            FROM (
+                SELECT key1, key2, q_row_num.row_num, LAST_VALUE(q_row_num.row_num) OVER() last_val
+                FROM (
+                    SELECT key1, key2, ROW_NUMBER() OVER (ORDER BY key1, key2) row_num
+                    FROM chunk_test_data_source.test_table_int_int_pk) q_row_num
+                ) q_last_value
+            WHERE MOD(q_last_value.row_num, 1000) = 1
+            OR q_last_value.row_num = q_last_value.last_val;
+        
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:33: NOTICE:  ==============
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:33: NOTICE:  Creating new run id
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:33: NOTICE:  Starting at Chunk: 1
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:33: NOTICE:  ==============
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:33: NOTICE:  Key 1 equal Key 2 not equal statement
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:33: NOTICE:  
+            INSERT INTO chunk_test_data_target.test_table_int_int_pk(key1, key2, row_value)
+            SELECT t.key1, t.key2, t.row_value / CASE WHEN t.divisor IS NULL THEN 1 ELSE divisor END
+            FROM chunk_test_data_source.test_table_int_int_pk t
+            WHERE  (t.key1 = $1  AND t.key2 >= $2  AND t.key2 < $3 )
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:33: NOTICE:  ==============
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:33: NOTICE:  Key 1 not equal statements
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:33: NOTICE:  
+            INSERT INTO chunk_test_data_target.test_table_int_int_pk(key1, key2, row_value)
+            SELECT t.key1, t.key2, t.row_value / CASE WHEN t.divisor IS NULL THEN 1 ELSE divisor END
+            FROM chunk_test_data_source.test_table_int_int_pk t
+            WHERE  (t.key1 = $1  AND t.key2 >= $2 )
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:33: NOTICE:  
+            INSERT INTO chunk_test_data_target.test_table_int_int_pk(key1, key2, row_value)
+            SELECT t.key1, t.key2, t.row_value / CASE WHEN t.divisor IS NULL THEN 1 ELSE divisor END
+            FROM chunk_test_data_source.test_table_int_int_pk t
+            WHERE  (t.key1 = $1  AND t.key2 >= $2 )
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:33: NOTICE:  
+            INSERT INTO chunk_test_data_target.test_table_int_int_pk(key1, key2, row_value)
+            SELECT t.key1, t.key2, t.row_value / CASE WHEN t.divisor IS NULL THEN 1 ELSE divisor END
+            FROM chunk_test_data_source.test_table_int_int_pk t
+            WHERE  (t.key1 = $1  AND t.key2 >= $2 )
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:33: NOTICE:  ==============
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:33: NOTICE:  Final row statement
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:33: NOTICE:  
+            INSERT INTO chunk_test_data_target.test_table_int_int_pk(key1, key2, row_value)
+            SELECT t.key1, t.key2, t.row_value / CASE WHEN t.divisor IS NULL THEN 1 ELSE divisor END
+            FROM chunk_test_data_source.test_table_int_int_pk t
+            WHERE  (t.key1 = $1 AND t.key2 = $1)
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:33: NOTICE:  ==============
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:33: NOTICE:  Processing chunk 100
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:33: NOTICE:  Processing chunk 200
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:33: NOTICE:  Processing chunk 300
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:33: ERROR:  division by zero
+CONTEXT:  SQL statement "
+            INSERT INTO chunk_test_data_target.test_table_int_int_pk(key1, key2, row_value)
+            SELECT t.key1, t.key2, t.row_value / CASE WHEN t.divisor IS NULL THEN 1 ELSE divisor END
+            FROM chunk_test_data_source.test_table_int_int_pk t
+            WHERE  (t.key1 = $1  AND t.key2 >= $2 )"
+PL/pgSQL function chunk_pgplsql_lib.execute_chunk_stmt(integer,integer,chunk_data.chunk_key,chunk_data.chunk_key,character varying,boolean,boolean,integer) line 7 at EXECUTE
+SQL statement "CALL chunk_pgplsql_lib.execute_chunk_stmt(
+            i_run_id                => i_run_id,
+            i_chunk_number          => i_chunk_number,
+            i_key1                  => i_lower_boundary_record.pk_key1,
+            i_key2                  => i_lower_boundary_record.pk_key2,
+            i_stmt                  => i_k1_n_1_stmt,
+            i_is_final_sub_chunk    => FALSE,
+            i_is_final_chunk        => FALSE,
+            o_sub_chunk_number      => l_sub_chunk_number
+        )"
+PL/pgSQL function chunk_pgplsql_lib.pk2_execute_k1_n(record,record,integer,integer,character varying,character varying,character varying) line 7 at CALL
+SQL statement "CALL chunk_pgplsql_lib.pk2_execute_k1_n(
+                        i_lower_boundary_record => l_lower_boundary_record,
+                        i_upper_boundary_record => l_upper_boundary_record,
+                        i_run_id                => i_run_id,
+                        i_chunk_number          => l_current_chunk,
+                        i_k1_n_1_stmt           => l_k1_n_1_stmt,
+                        i_k1_n_2_stmt           => l_k1_n_2_stmt,
+                        i_k1_n_3_stmt           => l_k1_n_3_stmt
+                    )"
+PL/pgSQL function chunk_pgplsql_lib.pk2_execute_chunks(character varying,character varying,character varying,integer,integer,integer,character varying[],character varying[],character varying,integer,integer) line 80 at CALL
+SQL statement "CALL chunk_pgplsql_lib.pk2_execute_chunks(
+            i_driving_schema_name   => i_driving_schema_name,
+            i_driving_table_name    => i_driving_table_name,
+            i_statement_text        => i_statement_text,
+            i_run_id                => i_run_id,
+            i_start_chunk           => i_start_chunk,
+            i_number_of_chunks      => i_number_of_chunks,
+            i_pk_columns            => i_pk_columns,
+            i_pk_types              => i_pk_types,
+            i_table_alias           => i_table_alias,
+            i_log_level             => i_log_level,
+            i_log_every_chunk       => i_log_every_chunk
+        )"
+PL/pgSQL function chunk_pgplsql_lib.execute_chunks(character varying,character varying,character varying,integer,integer,integer,character varying[],character varying[],character varying,integer,integer) line 19 at CALL
+SQL statement "CALL chunk_pgplsql_lib.execute_chunks(
+        i_driving_schema_name   => l_driving_schema_name,
+        i_driving_table_name    => l_driving_table_name,
+        i_statement_text        => i_statement_text,
+        i_run_id                => l_run_id,
+        i_start_chunk           => l_start_chunk,
+        i_number_of_chunks      => l_number_of_chunks,
+        i_pk_columns            => l_pk_columns,
+        i_pk_types              => l_pk_types,
+        i_table_alias           => i_table_alias,
+        i_log_level             => i_log_level,
+        i_log_every_chunk       => i_log_every_chunk
+    )"
+PL/pgSQL function chunk_pgplsql.execute_dml(character varying,character varying,character varying,character varying,integer,character varying,integer,integer,boolean) line 54 at CALL
+SQL statement "CALL chunk_pgplsql.execute_dml(
+        i_driving_schema_name => chunk_pgplsql_const.chunk_test_data_source_schema(),
+        i_driving_table_name  => 'test_table_int_int_pk',
+        i_statement_text      => '
+            INSERT INTO chunk_test_data_target.test_table_int_int_pk(key1, key2, row_value)
+            SELECT t.key1, t.key2, t.row_value / CASE WHEN t.divisor IS NULL THEN 1 ELSE divisor END
+            FROM <driving_table>
+            WHERE  <primary_key_range>',
+        i_chunk_size          => 1000,
+        i_run_name            => 'test_retry_insert_test_table_int_int_pk',
+        i_suppress_run_id_log => TRUE
+    )"
+PL/pgSQL function inline_code_block line 3 at CALL
+DO
+CALL
+UPDATE 1
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:78: NOTICE:  Chunking query
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:78: NOTICE:  ==============
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:78: NOTICE:     INSERT INTO chunk_data.chunk_boundary(chunk_run_id, chunk_number, sub_chunk_number, pk_key1.integer_value, pk_key2.integer_value)
+            SELECT $1, ROW_NUMBER() OVER (ORDER BY key1, key2) row_num, 0, key1, key2
+            FROM (
+                SELECT key1, key2, q_row_num.row_num, LAST_VALUE(q_row_num.row_num) OVER() last_val
+                FROM (
+                    SELECT key1, key2, ROW_NUMBER() OVER (ORDER BY key1, key2) row_num
+                    FROM chunk_test_data_source.test_table_int_int_pk) q_row_num
+                ) q_last_value
+            WHERE MOD(q_last_value.row_num, 1000) = 1
+            OR q_last_value.row_num = q_last_value.last_val;
+        
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:78: NOTICE:  ==============
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:78: NOTICE:  Found existing run id
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:78: NOTICE:  Starting at Chunk: 337
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:78: NOTICE:  ==============
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:78: NOTICE:  Key 1 equal Key 2 not equal statement
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:78: NOTICE:  
+            INSERT INTO chunk_test_data_target.test_table_int_int_pk(key1, key2, row_value)
+            SELECT t.key1, t.key2, t.row_value / CASE WHEN t.divisor IS NULL THEN 1 ELSE divisor END
+            FROM chunk_test_data_source.test_table_int_int_pk t
+            WHERE  (t.key1 = $1  AND t.key2 >= $2  AND t.key2 < $3 )
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:78: NOTICE:  ==============
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:78: NOTICE:  Key 1 not equal statements
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:78: NOTICE:  
+            INSERT INTO chunk_test_data_target.test_table_int_int_pk(key1, key2, row_value)
+            SELECT t.key1, t.key2, t.row_value / CASE WHEN t.divisor IS NULL THEN 1 ELSE divisor END
+            FROM chunk_test_data_source.test_table_int_int_pk t
+            WHERE  (t.key1 = $1  AND t.key2 >= $2 )
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:78: NOTICE:  
+            INSERT INTO chunk_test_data_target.test_table_int_int_pk(key1, key2, row_value)
+            SELECT t.key1, t.key2, t.row_value / CASE WHEN t.divisor IS NULL THEN 1 ELSE divisor END
+            FROM chunk_test_data_source.test_table_int_int_pk t
+            WHERE  (t.key1 = $1  AND t.key2 >= $2 )
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:78: NOTICE:  
+            INSERT INTO chunk_test_data_target.test_table_int_int_pk(key1, key2, row_value)
+            SELECT t.key1, t.key2, t.row_value / CASE WHEN t.divisor IS NULL THEN 1 ELSE divisor END
+            FROM chunk_test_data_source.test_table_int_int_pk t
+            WHERE  (t.key1 = $1  AND t.key2 >= $2 )
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:78: NOTICE:  ==============
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:78: NOTICE:  Final row statement
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:78: NOTICE:  
+            INSERT INTO chunk_test_data_target.test_table_int_int_pk(key1, key2, row_value)
+            SELECT t.key1, t.key2, t.row_value / CASE WHEN t.divisor IS NULL THEN 1 ELSE divisor END
+            FROM chunk_test_data_source.test_table_int_int_pk t
+            WHERE  (t.key1 = $1 AND t.key2 = $1)
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:78: NOTICE:  ==============
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:78: NOTICE:  Processing chunk 400
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:78: NOTICE:  Processing chunk 500
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:78: NOTICE:  Processing chunk 600
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:78: NOTICE:  Processing chunk 700
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:78: NOTICE:  Processing chunk 800
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:78: NOTICE:  Processing chunk 900
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:78: NOTICE:  Processing chunk 1000
+psql:sql/test_retry_insert_test_table_int_int_pk_1.sql:78: NOTICE:  Processing chunk 1001
+DO
+CALL

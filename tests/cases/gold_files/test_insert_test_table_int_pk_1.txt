@@ -1,0 +1,43 @@
+psql:sql/test_insert_test_table_int_pk_1.sql:7: NOTICE:  Starting chunk size: 1000
+psql:sql/test_insert_test_table_int_pk_1.sql:7: NOTICE:  Chunking query
+psql:sql/test_insert_test_table_int_pk_1.sql:7: NOTICE:  ==============
+psql:sql/test_insert_test_table_int_pk_1.sql:7: NOTICE:     INSERT INTO chunk_data.chunk_boundary(chunk_run_id, chunk_number, sub_chunk_number, pk_key1.integer_value)
+            SELECT $1, ROW_NUMBER() OVER (ORDER BY key1) row_num, 0, key1
+            FROM (
+                SELECT key1, q_row_num.row_num, LAST_VALUE(q_row_num.row_num) OVER() last_val
+                FROM (
+                    SELECT key1, ROW_NUMBER() OVER (ORDER BY key1) row_num
+                    FROM chunk_test_data_source.test_table_int_pk) q_row_num
+                ) q_last_value
+            WHERE MOD(q_last_value.row_num, 1000) = 1
+            OR q_last_value.row_num = q_last_value.last_val;
+        
+psql:sql/test_insert_test_table_int_pk_1.sql:7: NOTICE:  ==============
+psql:sql/test_insert_test_table_int_pk_1.sql:7: NOTICE:  Creating new run id
+psql:sql/test_insert_test_table_int_pk_1.sql:7: NOTICE:  Starting at Chunk: 1
+psql:sql/test_insert_test_table_int_pk_1.sql:7: NOTICE:  ==============
+psql:sql/test_insert_test_table_int_pk_1.sql:7: NOTICE:  Key 1 not equal statement
+psql:sql/test_insert_test_table_int_pk_1.sql:7: NOTICE:  
+            INSERT INTO chunk_test_data_target.test_table_int_pk(key1 , row_value)
+            SELECT t.key1 , t.row_value
+            FROM chunk_test_data_source.test_table_int_pk t
+            WHERE  (t.key1 >= $1  AND t.key1 < $2 )
+psql:sql/test_insert_test_table_int_pk_1.sql:7: NOTICE:  ==============
+psql:sql/test_insert_test_table_int_pk_1.sql:7: NOTICE:  Final row statement
+psql:sql/test_insert_test_table_int_pk_1.sql:7: NOTICE:  
+            INSERT INTO chunk_test_data_target.test_table_int_pk(key1 , row_value)
+            SELECT t.key1 , t.row_value
+            FROM chunk_test_data_source.test_table_int_pk t
+            WHERE  (t.key1 = $1)
+psql:sql/test_insert_test_table_int_pk_1.sql:7: NOTICE:  ==============
+psql:sql/test_insert_test_table_int_pk_1.sql:7: NOTICE:  Processing chunk 100
+psql:sql/test_insert_test_table_int_pk_1.sql:7: NOTICE:  Processing chunk 200
+psql:sql/test_insert_test_table_int_pk_1.sql:7: NOTICE:  Processing chunk 300
+psql:sql/test_insert_test_table_int_pk_1.sql:7: NOTICE:  Processing chunk 400
+psql:sql/test_insert_test_table_int_pk_1.sql:7: NOTICE:  Processing chunk 500
+psql:sql/test_insert_test_table_int_pk_1.sql:7: NOTICE:  Processing chunk 600
+psql:sql/test_insert_test_table_int_pk_1.sql:7: NOTICE:  Processing chunk 700
+psql:sql/test_insert_test_table_int_pk_1.sql:7: NOTICE:  Processing chunk 800
+psql:sql/test_insert_test_table_int_pk_1.sql:7: NOTICE:  Processing chunk 900
+psql:sql/test_insert_test_table_int_pk_1.sql:7: NOTICE:  Processing chunk 1000
+psql:sql/test_insert_test_table_int_pk_1.sql:7: NOTICE:  Processing chunk 1001

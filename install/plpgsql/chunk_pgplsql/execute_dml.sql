@@ -6,7 +6,8 @@ CREATE OR REPLACE PROCEDURE chunk_pgplsql.execute_dml(
     i_chunk_size            IN INTEGER DEFAULT 1000,
     i_table_alias           IN VARCHAR DEFAULT 't',
     i_log_level             IN INTEGER DEFAULT 2,
-    i_log_every_chunk       IN INTEGER DEFAULT 100
+    i_log_every_chunk       IN INTEGER DEFAULT 100,
+    i_suppress_run_id_log   IN BOOLEAN DEFAULT FALSE
 )
 LANGUAGE plpgsql
 AS $$
@@ -55,6 +56,7 @@ BEGIN
         i_chunk_size            => i_chunk_size,
         i_run_name              => i_run_name,
         i_log_level             => i_log_level,
+        i_suppress_run_id_log   => i_suppress_run_id_log,
         o_run_id                => l_run_id,
         o_start_chunk           => l_start_chunk,
         o_number_of_chunks      => l_number_of_chunks,

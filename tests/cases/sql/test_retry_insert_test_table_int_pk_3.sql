@@ -6,10 +6,7 @@ WHERE divisor IS NOT NULL;
 
 UPDATE chunk_test_data_source.test_table_int_pk
 SET divisor = 0
-WHERE key1 = (
-    SELECT max(m.key1)
-    FROM chunk_test_data_source.test_table_int_pk m
-);
+WHERE key1 = 337337;
 
 CALL chunk_pgplsql.mark_runs_complete(i_run_name  => 'test_retry_insert_test_table_int_pk');
 
@@ -28,27 +25,13 @@ BEGIN
             FROM <driving_table>
             WHERE  <primary_key_range>',
         i_chunk_size          => 1000,
-        i_run_name            => 'test_retry_insert_test_table_int_pk'
+        i_run_name            => 'test_retry_insert_test_table_int_pk',
+        i_suppress_run_id_log => TRUE
     );
 END$$
 ;
 
-\set ON_ERROR_STOP on
-
-CALL chunk_test_pgplsql.assert_uncompleted_run(
-    i_run_name              => 'test_retry_insert_test_table_int_pk',
-    i_chunk_size            => 1000,
-    i_completed_chunks      => 1000,
-    i_uncompleted_chunks    => 1
-);
-
-UPDATE chunk_test_data_source.test_table_int_pk
-SET divisor = 1
-WHERE key1 = (
-    SELECT max(m.key1)
-    FROM chunk_test_data_source.test_table_int_pk m
-);
-
+TRUNCATE TABLE chunk_test_data_target.test_table_int_pk;
 
 DO $$
 BEGIN
@@ -60,15 +43,27 @@ BEGIN
             SELECT t.key1 , t.row_value / CASE WHEN t.divisor IS NULL THEN 1 ELSE divisor END
             FROM <driving_table>
             WHERE  <primary_key_range>',
-        i_chunk_size          => 1000,
-        i_run_name            => 'test_retry_insert_test_table_int_pk'
+        i_chunk_size          => 2000,
+        i_run_name            => 'test_retry_insert_test_table_int_pk',
+        i_suppress_run_id_log => TRUE
     );
 END$$
 ;
 
-CALL chunk_test_pgplsql.validate_test_table(
-    i_table_name => 'test_table_int_pk'
+\set ON_ERROR_STOP on
+
+CALL chunk_test_pgplsql.assert_uncompleted_run(
+    i_run_name              => 'test_retry_insert_test_table_int_pk',
+    i_chunk_size            => 1000,
+    i_completed_chunks      => 337,
+    i_uncompleted_chunks    => 664
 );
 
+CALL chunk_test_pgplsql.assert_uncompleted_run(
+    i_run_name              => 'test_retry_insert_test_table_int_pk',
+    i_chunk_size            => 2000,
+    i_completed_chunks      => 168,
+    i_uncompleted_chunks    => 333
+);
 
 \q

@@ -6,9 +6,20 @@ WHERE divisor IS NOT NULL;
 
 UPDATE chunk_test_data_source.test_table_int_int_int_pk
 SET divisor = 0
-WHERE key1 = 37
-AND key2 = 37
-AND key3 = 1;
+WHERE (key1, key2, key3) = (
+    SELECT m3.key1, m3.key2, max(m3.key3)
+    FROM chunk_test_data_source.test_table_int_int_int_pk m3
+    WHERE (m3.key1, m3.key2) IN (
+        SELECT m.key1, max(m.key2)
+        FROM chunk_test_data_source.test_table_int_int_int_pk m
+        WHERE m.key1 = (
+            SELECT max(m2.key1)
+            FROM chunk_test_data_source.test_table_int_int_int_pk m2
+        )
+        GROUP BY m.key1
+    )
+    GROUP BY m3.key1 , m3.key2
+);
 
 CALL chunk_pgplsql.mark_runs_complete(i_run_name  => 'test_retry_insert_test_table_int_int_int_pk');
 
@@ -27,38 +38,37 @@ BEGIN
             FROM <driving_table>
             WHERE  <primary_key_range>',
         i_chunk_size          => 1000,
-        i_run_name            => 'test_retry_insert_test_table_int_int_int_pk'
+        i_run_name            => 'test_retry_insert_test_table_int_int_int_pk',
+        i_suppress_run_id_log => TRUE
     );
 END$$
 ;
 
 \set ON_ERROR_STOP on
 
-
-DO $$
-DECLARE
-    l_dummy INTEGER;
-BEGIN
-    SELECT 1
-    INTO STRICT l_dummy
-    FROM chunk_data.chunk_run r
-    WHERE r.run_name = 'test_retry_insert_test_table_int_int_int_pk'
-    AND   r.end_timestamp IS NULL;
-END$$
-;
-
 CALL chunk_test_pgplsql.assert_uncompleted_run(
     i_run_name              => 'test_retry_insert_test_table_int_int_int_pk',
     i_chunk_size            => 1000,
-    i_completed_chunks      => 363,
-    i_uncompleted_chunks    => 638
+    i_completed_chunks      => 1000,
+    i_uncompleted_chunks    => 1
 );
 
 UPDATE chunk_test_data_source.test_table_int_int_int_pk
 SET divisor = 1
-WHERE key1 = 37
-AND key2 = 37
-AND key3 = 1;
+WHERE (key1, key2, key3) = (
+    SELECT m3.key1, m3.key2, max(m3.key3)
+    FROM chunk_test_data_source.test_table_int_int_int_pk m3
+    WHERE (m3.key1, m3.key2) IN (
+        SELECT m.key1, max(m.key2)
+        FROM chunk_test_data_source.test_table_int_int_int_pk m
+        WHERE m.key1 = (
+            SELECT max(m2.key1)
+            FROM chunk_test_data_source.test_table_int_int_int_pk m2
+        )
+        GROUP BY m.key1
+    )
+    GROUP BY m3.key1 , m3.key2
+);
 
 
 DO $$
@@ -72,7 +82,8 @@ BEGIN
             FROM <driving_table>
             WHERE  <primary_key_range>',
         i_chunk_size          => 1000,
-        i_run_name            => 'test_retry_insert_test_table_int_int_int_pk'
+        i_run_name            => 'test_retry_insert_test_table_int_int_int_pk',
+        i_suppress_run_id_log => TRUE
     );
 END$$
 ;

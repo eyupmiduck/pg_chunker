@@ -8,6 +8,7 @@ CREATE OR REPLACE PROCEDURE chunk_pgplsql_lib.register_chunk_run(
     i_chunk_size            IN  INTEGER,
     i_run_name              IN  VARCHAR,
     i_log_level             IN  INTEGER,
+    i_suppress_run_id_log   IN  BOOLEAN,
     o_run_id                OUT INTEGER,
     o_start_chunk           OUT INTEGER,
     o_number_of_chunks      OUT INTEGER,
@@ -42,12 +43,20 @@ BEGIN
         WHERE r.run_name = i_run_name
         AND   r.chunk_size = i_chunk_size
         AND   r.end_timestamp IS NULL;
-        CALL chunk_pgplsql_lib.log_line(
-            i_log_line      => 'Found existing run id is: %',
-            i_expression_1  => o_run_id,
-            i_log_level     => i_log_level,
-            i_call_type => 2
-        );
+        IF i_suppress_run_id_log THEN
+            CALL chunk_pgplsql_lib.log_line(
+                i_log_line      => 'Found existing run id',
+                i_log_level     => i_log_level,
+                i_call_type => 2
+            );
+        ELSE
+            CALL chunk_pgplsql_lib.log_line(
+                i_log_line      => 'Found existing run id is: %',
+                i_expression_1  => o_run_id,
+                i_log_level     => i_log_level,
+                i_call_type => 2
+            );
+        END IF;
     EXCEPTION WHEN NO_DATA_FOUND THEN
         BEGIN
             INSERT INTO chunk_data.chunk_run(
@@ -65,12 +74,20 @@ BEGIN
                 i_run_name
             )
             RETURNING id INTO o_run_id;
-            CALL chunk_pgplsql_lib.log_line(
-                i_log_line      => 'Creating new run id: %',
-                i_expression_1  => o_run_id,
-                i_log_level     => i_log_level,
-                i_call_type     => 2
-            );
+            IF i_suppress_run_id_log THEN
+                CALL chunk_pgplsql_lib.log_line(
+                    i_log_line      => 'Creating new run id',
+                    i_log_level     => i_log_level,
+                    i_call_type     => 2
+                );
+            ELSE
+                CALL chunk_pgplsql_lib.log_line(
+                    i_log_line      => 'Creating new run id: %',
+                    i_expression_1  => o_run_id,
+                    i_log_level     => i_log_level,
+                    i_call_type     => 2
+                );
+            END IF;
 
             EXECUTE l_insert_chunks_statement USING o_run_id;
             IF FOUND THEN

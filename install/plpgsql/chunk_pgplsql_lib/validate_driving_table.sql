@@ -56,6 +56,9 @@ BEGIN
         IF o_pk_types[l_pk_column_pos] LIKE chunk_pgplsql_const.varchar_type()||'%' THEN
             o_pk_types[l_pk_column_pos]:= chunk_pgplsql_const.varchar_type();
         END IF;
+        IF o_pk_types[l_pk_column_pos] = 'timestamp with time zone' THEN
+            o_pk_types[l_pk_column_pos]:= chunk_pgplsql_const.timestamptz_type();
+        END IF;
     END LOOP;
     IF CARDINALITY(o_pk_columns) NOT IN (1, 2, 3) THEN
         RAISE EXCEPTION 'Only supports primary keys of 1 or 3 columns. Table % has a PK of %', l_qualified_table_name, CARDINALITY(o_pk_columns);

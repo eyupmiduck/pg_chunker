@@ -12,7 +12,7 @@ BEGIN
     SELECT day, ((random() * 1000000) + 1)::INTEGER
     FROM generate_series(timestamp '2000-01-01'
                      , timestamp '3000-01-01'
-                     , interval  '1 minute') AS t(day)
+                     , interval  '1 second') AS t(day)
     LIMIT i_number_of_rows;
     COMMIT;
 END;$$

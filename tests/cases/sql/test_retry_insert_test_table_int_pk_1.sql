@@ -25,7 +25,8 @@ BEGIN
             FROM <driving_table>
             WHERE  <primary_key_range>',
         i_chunk_size          => 1000,
-        i_run_name            => 'test_retry_insert_test_table_int_pk'
+        i_run_name            => 'test_retry_insert_test_table_int_pk',
+        i_suppress_run_id_log => TRUE
     );
 END$$
 ;
@@ -68,7 +69,8 @@ BEGIN
             FROM <driving_table>
             WHERE  <primary_key_range>',
         i_chunk_size          => 1000,
-        i_run_name            => 'test_retry_insert_test_table_int_pk'
+        i_run_name            => 'test_retry_insert_test_table_int_pk',
+        i_suppress_run_id_log => TRUE
     );
 END$$
 ;

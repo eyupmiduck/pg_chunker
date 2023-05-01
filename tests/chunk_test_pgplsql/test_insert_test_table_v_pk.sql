@@ -21,7 +21,8 @@ BEGIN
             FROM <driving_table>
             WHERE  <primary_key_range>',
         i_chunk_size          => i_chunk_size,
-        i_run_name            => 'test_insert_test_table_v_pk'
+        i_run_name            => 'test_insert_test_table_v_pk',
+        i_suppress_run_id_log => TRUE
     );
     CALL chunk_test_pgplsql.validate_test_table(
         i_table_name => l_table_name
